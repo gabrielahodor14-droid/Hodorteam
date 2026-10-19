@@ -1,0 +1,4 @@
+@import "./theme.css";
+@import "./settings.css";
+
+.login-page{min-height:100dvh;display:grid;place-items:center;padding:24px;background:#f6f3fa}.login-card{width:min(100%,420px);padding:36px;border:1px solid #e6deee;border-radius:20px;background:white;box-shadow:0 12px 50px #38274c0d}.login-card h1{font-family:Georgia,serif;font-size:32px;line-height:1.2;margin:18px 0}.login-card p{line-height:1.7;color:#716a7b;margin:16px 0}.login-card .button{width:100%;justify-content:center;min-height:48px}.google-status{font-size:11px;color:#8e651b}.google-synced{color:#267359}.google-message{font-size:11px;line-height:1.6;color:#9d3f4c;flex-basis:100%}

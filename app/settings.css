@@ -1,0 +1,30 @@
+.sidebar{overflow-y:auto}
+.brand{text-align:left;width:calc(100% - 24px)}
+.sidebar-bottom{margin-top:auto}
+.page-heading{align-items:center}
+.page-heading h1{margin:0}
+.heading-actions{display:flex;align-items:center;gap:10px;padding-top:0}
+.heading-actions .button,.export-viewings{white-space:nowrap}
+.viewing-tools{flex-wrap:wrap;column-gap:18px;row-gap:8px}
+.text-button{min-height:32px}
+.dialog-header .icon-button{min-height:40px;min-width:40px}
+.offline-banner{position:sticky;top:0;z-index:80;background:#fdf2df;border-bottom:1px solid #ead7b9;display:flex;align-items:center;justify-content:center;gap:8px;color:#99743f;padding:10px 20px;font-size:12px;line-height:1.7}
+.offline-banner svg{flex-shrink:0}
+@media(max-width:740px){
+  .mobile-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .mobile-nav button{min-height:44px}
+  .page-heading{align-items:flex-start;flex-direction:column;gap:16px;margin-bottom:22px}
+  .page-heading h1{font-size:29px;line-height:1.25}
+  .heading-actions{width:100%;gap:10px}
+  .heading-actions .button{min-height:44px;font-size:12px;padding:11px 15px}
+  .heading-actions .primary{margin-left:auto}
+  .heading-actions .sheet-link{gap:7px}
+  .export-viewings{font-size:11px;min-height:44px;padding:10px 12px}
+  .offline-banner{font-size:11px;align-items:flex-start;padding:10px 16px}
+  .text-button{min-height:40px}
+  .icon-button{min-height:40px;min-width:40px}
+  .calendar-heading .icon-button{min-height:36px;min-width:36px}
+  .calendar-grid button{height:43px;min-height:43px}
+  .viewing-tools{margin-left:0;gap:5px 17px}
+  .viewing-tools .text-button{font-size:11px}
+}
