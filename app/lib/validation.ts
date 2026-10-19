@@ -1,0 +1,9 @@
+import {z} from "zod";
+import {STAGES} from "./model";
+const clean=(max:number)=>z.string().trim().max(max,"Textul este prea lung.");
+const day=clean(10).refine(v=>!v||(/^\d{4}-\d{2}-\d{2}$/.test(v)&&!Number.isNaN(Date.parse(v+"T12:00:00Z"))&&new Date(v+"T12:00:00Z").toISOString().slice(0,10)===v),"Data de revenire nu este validă.");
+export const clientSchema=z.object({
+  name:clean(120).min(2,"Completează numele clientului (minimum 2 caractere)."),phone:clean(40).refine(v=>!v||/^[+\d\s().\-]{6,40}$/.test(v),"Numărul de telefon nu este valid."),email:clean(180).refine(v=>!v||z.string().email().safeParse(v).success,"Adresa de email nu este validă."),
+  intent:z.enum(["buy","rent"]),propertyType:z.enum(["apartment","studio","house","land","commercial"]),budgetMin:z.number().finite().min(0).max(1000000000),budgetMax:z.number().finite().min(0).max(1000000000),currency:z.enum(["EUR","RON"]),rooms:clean(30),zones:clean(500),preferences:z.array(clean(80)).max(20),notes:clean(6000),source:clean(120),priority:z.enum(["normal","high"]),followUp:day,status:z.string().refine(v=>STAGES.some(s=>s.id===v),"Stadiul nu este valid."),
+}).refine(v=>!v.budgetMax||v.budgetMin<=v.budgetMax,{message:"Bugetul maxim trebuie să fie cel puțin egal cu bugetul minim.",path:["budgetMax"]});
+export const viewingSchema=z.object({clientId:clean(100).min(1,"Alege un client."),property:clean(200).min(2,"Completează proprietatea vizionată."),address:clean(500),listingUrl:clean(2000).refine(v=>!v||(/^https?:\/\//i.test(v)&&z.string().url().safeParse(v).success),"Linkul trebuie să înceapă cu https:// sau http://."),startsAt:z.string().datetime({offset:true}).transform(value=>new Date(value).toISOString()),duration:z.number().int().min(15).max(240),status:z.enum(["scheduled","completed","cancelled"]),notes:clean(6000)});
